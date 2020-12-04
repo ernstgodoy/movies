@@ -1,4 +1,4 @@
-const api_key = process.env.REACT_APP_API_KEY
+const api_key = `${process.env.REACT_APP_API_KEY}`
 
 //movie api
 export const getMovies = (movie) => {
