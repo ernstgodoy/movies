@@ -1,6 +1,4 @@
 # README
-
-![](assets/images/movie_api.gif)
 ## Installation 
 
 Clone repository
@@ -23,6 +21,9 @@ Start the server
 ```bash
 rails s
 ```
+
+## Usage
+<img src="/assets/images/movie_api.gif">
 
 ## Stack
  - React 17.0.1
