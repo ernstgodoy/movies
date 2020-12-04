@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Image, Button } from 'react-bootstrap';
 import { getMovieInfo, getRequest, postRequest, updateRequest } from '../api/Api';
 import { RiThumbUpFill, RiThumbDownFill } from 'react-icons/ri'
+//components
+import RateModal from './RateModal'
 
 const MovieDetails = (props) => {
   const id = props.match.params.id
@@ -12,12 +14,18 @@ const MovieDetails = (props) => {
   const [btnDisable, setBtnDisable] = useState(false)
   const [exists, setExists] = useState(null)
   const [movie, setMovie] = useState(null)
+  const [modalShow, setModalShow] = useState(false)
 
   useEffect(() => {
+    let mounted = true
+
     getMovieInfo(id)
     .then(data => {
-      setMovieDetails(data)
-      setIsLoaded(true)
+      if (mounted) {
+        console.log(data)
+        setMovieDetails(data)
+        setIsLoaded(true)
+      }
     })
     .catch(err => {
       if (err) {
@@ -29,19 +37,24 @@ const MovieDetails = (props) => {
     .then(res => {
       const movie = res.find(m => m.movie_id === id)
       if (movie) {
-        setMovie(movie)
-        setExists(true)
+        if(mounted) {
+          setMovie(movie)
+          setExists(true)
+        }
       } else {
-        setMovie({title: movieDetails.title , thumbs_up: 0, thumbs_down: 0, movie_id: id})
-        setExists(false)
-        console.log("does not exist in db")
+        if (mounted) {
+          setMovie({title: movieDetails.title , thumbs_up: 0, thumbs_down: 0, movie_id: id})
+          setExists(false)
+        }
       }
     })
 
+    return () => mounted = false 
   }, [])
 
   const handleLike = (e) => {
     movie.thumbs_up++
+    setModalShow(true)
     e.preventDefault()
     setBtnDisable(true)
     buttonClick(movie)
@@ -49,6 +62,7 @@ const MovieDetails = (props) => {
 
   const handleDislike = (e) => {
     movie.thumbs_down++
+    setModalShow(true)
     e.preventDefault()
     setBtnDisable(true)
     buttonClick(movie)
@@ -67,11 +81,14 @@ const MovieDetails = (props) => {
     poster, 
     title, 
     plot, 
-    year 
+    year,
+    length,
+    rating
   } = movieDetails
 
   return (
     <>
+      <RateModal show={ modalShow }/>
       {(isLoaded && !error) && 
         <Container className="details">
           <Row>
@@ -83,7 +100,7 @@ const MovieDetails = (props) => {
                 { title }
               </h1>
               <p>
-                { year }
+                { year } | { length } | Rating: { rating }
               </p>
               <hr/>
               <p>

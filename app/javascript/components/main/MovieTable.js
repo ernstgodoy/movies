@@ -7,11 +7,15 @@ const MovieTable = () => {
   const [movieList, setMovieList] = useState({})
 
   useEffect(() => {
+    let mounted = true
     getRequest()
     .then(data => {
-      setMovieList(data)
-      setIsLoaded(true)
+      if (mounted) {
+        setMovieList(data)
+        setIsLoaded(true)
+      }
     })
+    return () => mounted = false
   }, [])
 
   return (
@@ -29,7 +33,7 @@ const MovieTable = () => {
               { movieList.map((m, i) => {
                 return (
                   <tr key={ i }>
-                    <td>{ m.title }</td>
+                    <td><a href={ `/movie-details/${m.movie_id}` }>{ m.title }</a></td>
                     <td>{ m.thumbs_up } </td>
                     <td>{ m.thumbs_down }</td>
                   </tr>
