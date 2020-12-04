@@ -23,7 +23,7 @@ rails s
 ```
 
 ## Usage
-<img src="/assets/images/movie_api.gif">
+![](https://github.com/ernstgodoy/movies/blob/main/app/assets/images/movie_api.gif)
 
 ## Stack
  - React 17.0.1
