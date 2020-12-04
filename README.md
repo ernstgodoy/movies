@@ -1,4 +1,9 @@
 # README
+
+## Deployed on Heroku
+
+https://ratemovie-s.herokuapp.com/
+
 ## Installation 
 
 Clone repository
