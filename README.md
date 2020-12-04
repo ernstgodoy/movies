@@ -1,5 +1,6 @@
 # README
 
+![](assets/images/movie_api.gif)
 ## Installation 
 
 Clone repository
