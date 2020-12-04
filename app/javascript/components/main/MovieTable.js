@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Table } from 'react-bootstrap'
+//api
 import { getRequest } from '../api/Api';
 
 const MovieTable = () => {
@@ -33,7 +34,7 @@ const MovieTable = () => {
               { movieList.map((m, i) => {
                 return (
                   <tr key={ i }>
-                    <td><a href={ `/movie-details/${m.movie_id}` }>{ m.title }</a></td>
+                    <td><a href={ `/movie-details/${ m.movie_id }` }>{ m.title }</a></td>
                     <td>{ m.thumbs_up } </td>
                     <td>{ m.thumbs_down }</td>
                   </tr>

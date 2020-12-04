@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Card, CardGroup, Spinner } from 'react-bootstrap'
+//api
 import { getMovies } from '../api/Api';
 
 const Search = () => {
@@ -9,8 +10,8 @@ const Search = () => {
   const [search, setSearch] = useState("")
   const [movieList, setMovieList] = useState([])
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault()
     setIsLoading(true)
     setIsLoaded(false)
     getMovies(search)  
@@ -27,9 +28,9 @@ const Search = () => {
     });
   }
 
-  const handleChange = (event) => {
-    event.persist();
-    setSearch(event.target.value);
+  const handleChange = (e) => {
+    e.persist();
+    setSearch(e.target.value);
   }
 
   return (
@@ -55,7 +56,7 @@ const Search = () => {
               <Card key={ i } className="movie-card">
                 <Card.Img variant="top" src={ m.image } className="card-image" />
                 <Card.Body>
-                  <a className="movie-title" href={`/movie-details/${m.id}`}>{ m.title }</a>
+                  <a className="movie-title" href={ `/movie-details/${ m.id }` }>{ m.title }</a>
                 </Card.Body>
               </Card>
               )

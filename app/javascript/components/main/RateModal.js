@@ -5,7 +5,7 @@ const RateModal = (props) => {
   return (
     <>
       <Modal
-        {...props}
+        { ...props }
         size="lg"
         backdrop="static"
         keyboard={ false }

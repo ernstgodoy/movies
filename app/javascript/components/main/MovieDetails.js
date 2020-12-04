@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Image, Button } from 'react-bootstrap';
-import { getMovieInfo, getRequest, postRequest, updateRequest } from '../api/Api';
+//icons
 import { RiThumbUpFill, RiThumbDownFill } from 'react-icons/ri'
+//api
+import { getMovieInfo, getRequest, postRequest, updateRequest } from '../api/Api';
 //components
 import RateModal from './RateModal'
 
@@ -22,7 +24,6 @@ const MovieDetails = (props) => {
     getMovieInfo(id)
     .then(data => {
       if (mounted) {
-        console.log(data)
         setMovieDetails(data)
         setIsLoaded(true)
       }
@@ -43,12 +44,11 @@ const MovieDetails = (props) => {
         }
       } else {
         if (mounted) {
-          setMovie({title: movieDetails.title , thumbs_up: 0, thumbs_down: 0, movie_id: id})
+          setMovie({ title: movieDetails.title , thumbs_up: 0, thumbs_down: 0, movie_id: id })
           setExists(false)
         }
       }
     })
-
     return () => mounted = false 
   }, [])
 
@@ -68,7 +68,7 @@ const MovieDetails = (props) => {
     buttonClick(movie)
   }
 
-  const buttonClick = (data ) => {
+  const buttonClick = (data) => {
     if (exists) {
       updateRequest(data, token)
     } else {
@@ -88,7 +88,7 @@ const MovieDetails = (props) => {
 
   return (
     <>
-      <RateModal show={ modalShow }/>
+      <RateModal show={ modalShow } onHide={ () => setModalShow(false) }/>
       {(isLoaded && !error) && 
         <Container className="details">
           <Row>

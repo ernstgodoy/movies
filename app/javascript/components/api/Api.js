@@ -1,8 +1,8 @@
-const api_key = `${process.env.REACT_APP_API_KEY}`
+const api_key = `${ process.env.REACT_APP_API_KEY }`
 
 //movie api
 export const getMovies = (movie) => {
-  return fetch(`https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/${movie}`, {
+  return fetch(`https://imdb-internet-movie-database-unofficial.p.rapidapi.com/search/${ movie }`, {
     "method": "GET",
     "headers": {
       "x-rapidapi-key": api_key,
@@ -13,7 +13,7 @@ export const getMovies = (movie) => {
 }
 
 export const getMovieInfo = (id) => {
-  return fetch(`https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/${id}`, {
+  return fetch(`https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/${ id }`, {
     "method": "GET",
     "headers": {
       "x-rapidapi-key": api_key,
@@ -44,7 +44,7 @@ export const postRequest = (movie, token) => {
 }
 
 export const updateRequest = (movie, token) => {
-  return fetch(`/movies/${movie.id}`, {
+  return fetch(`/movies/${ movie.id }`, {
     body: JSON.stringify(movie),
     method: 'PUT',
     headers: { 
